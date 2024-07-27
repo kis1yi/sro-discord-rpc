@@ -32,14 +32,14 @@ void AppManager::Initialize()
 // Set the respectives hooks
 void AppManager::InitHooks()
 {
-	replaceAddr(0x00DD92BC + 0x18, addr_from_this(&EventHandler::OnNetMsg));
-	replaceAddr(0x00DD811C + 0x18, addr_from_this(&EventHandler::OnCharacterSelection));
-	replaceAddr(0x00DD440C, addr_from_this(&EventHandler::OnPacketRecv));
+	replaceAddr(0x00E78774 + 0x18, addr_from_this(&EventHandler::OnNetMsg));
+	replaceAddr(0x00E77504 + 0x18, addr_from_this(&EventHandler::OnCharacterSelection));
+	replaceAddr(0x00E73734, addr_from_this(&EventHandler::OnPacketRecv));
 }
 // Initialize the rich presence for the current game in a independant thread
 DWORD WINAPI AppManager::InitDiscord()
 {
-	discord::ClientId CLIENT_ID(792263872274366504);
+	discord::ClientId CLIENT_ID(1164084316268138526);
 	// Try to create discord api instance
 	discord::Core* core{};
 	int delay = 30000;
@@ -127,17 +127,17 @@ void AppManager::UpdateDiscord()
 			case GAME_STATE::LOADING:
 				activity.SetState("Loading");
 				activity.GetAssets().SetLargeImage("logo");
-				activity.GetAssets().SetLargeText("SilkroadLatino.com");
+				activity.GetAssets().SetLargeText("ru.4game.com/silkroad");
 				break;
 			case GAME_STATE::SERVER_SELECTION:
 				activity.SetState("Selecting Server");
 				activity.GetAssets().SetLargeImage("logo");
-				activity.GetAssets().SetLargeText("SilkroadLatino.com");
+				activity.GetAssets().SetLargeText("ru.4game.com/silkroad");
 				break;
 			case GAME_STATE::CHARACTER_SELECTION:
 				activity.SetState("Selecting Character");
 				activity.GetAssets().SetLargeImage("logo");
-				activity.GetAssets().SetLargeText("SilkroadLatino.com");
+				activity.GetAssets().SetLargeText("ru.4game.com/silkroad");
 				break;
 			case GAME_STATE::IN_GAME:
 			{
@@ -183,7 +183,7 @@ void AppManager::UpdateDiscord()
 					else if (regionName == "Western China Donwhang") {
 						activity.GetAssets().SetLargeImage("loading_dunwhang");
 					}
-					else if (regionName == "Hotan") {
+					else if (regionName == "Hotan Kingdom") {
 						activity.GetAssets().SetLargeImage("loading_hotan");
 					}
 					else if (regionName == "Samarkand") {
@@ -242,7 +242,7 @@ void AppManager::UpdateDiscord()
 				// Game icon or Character icon
 				activity.GetAssets().SetSmallImage("logo");
 				// Game website or Character race
-				activity.GetAssets().SetSmallText("SilkroadLatino.com");
+				activity.GetAssets().SetSmallText("ru.4game.com/silkroad");
 				// Set Timestamp (Elapsed time)
 				activity.GetTimestamps().SetStart(m_InGameTimestamp);
 			}

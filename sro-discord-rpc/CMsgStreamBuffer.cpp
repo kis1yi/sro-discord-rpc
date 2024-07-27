@@ -37,7 +37,7 @@ MsgStreamBuffer::MsgStreamBuffer(const MsgStreamBuffer& SRC)
 
 MsgStreamBuffer::MsgStreamBuffer(WORD opcode)
 {
-	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, WORD)>(0x0053CEA0)(this, opcode);
+	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, WORD)>(0x004F1280)(this, opcode);
 }
 
 MsgStreamBuffer::~MsgStreamBuffer(void)
@@ -71,7 +71,7 @@ std::string MsgStreamBuffer::ReadStringA()
 {
 	WORD str_len = this->Read<WORD>();
 	std::string str(str_len, 0);
-	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, char*, int)>(0x004F7220)(this, &str[0], str_len);
+	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, char*, int)>(0x004AB1B0)(this, &str[0], str_len);
 	return str;
 }
 
@@ -79,30 +79,30 @@ std::wstring MsgStreamBuffer::ReadStringW()
 {
 	WORD wcs_len = this->Read<WORD>();
 	std::wstring wcs(wcs_len, 0);
-	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, wchar_t*, int)>(0x004F7220)(this, &wcs[0], wcs_len * 2);
+	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, wchar_t*, int)>(0x004AB1B0)(this, &wcs[0], wcs_len * 2);
 	return wcs;
 }
 
 void MsgStreamBuffer::WriteStringA(const char* str)
 {
 	WORD len = strlen(str);
-	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, WORD*, int)>(0x00508FE0)(this, &len, sizeof(WORD));
-	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, const char*, int)>(0x00508FE0)(this, str, len);
+	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, WORD*, int)>(0x004BD1E0)(this, &len, sizeof(WORD));
+	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, const char*, int)>(0x004BD1E0)(this, str, len);
 }
 
 void MsgStreamBuffer::WriteStringW(const wchar_t* wcs)
 {
 	WORD len = wcslen(wcs) * 2;
-	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, WORD*, int)>(0x00508FE0)(this, &len, sizeof(WORD));
-	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, const wchar_t*, int)>(0x00508FE0)(this, wcs, len);
+	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, WORD*, int)>(0x004BD1E0)(this, &len, sizeof(WORD));
+	reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, const wchar_t*, int)>(0x004BD1E0)(this, wcs, len);
 }
 
 void MsgStreamBuffer::SendMsg(MsgStreamBuffer* buffer)
 {
-	reinterpret_cast<void(__cdecl*)(MsgStreamBuffer*)>(0x008418D0)(buffer);
+	reinterpret_cast<void(__cdecl*)(MsgStreamBuffer*)>(0x00840FA0)(buffer);
 }
 
 bool MsgStreamBuffer::sub_841780(WORD Opcode, int a2)
 {
-	return reinterpret_cast<bool(__cdecl*)(WORD, int)>(0x00841780)(Opcode, a2);
+	return reinterpret_cast<bool(__cdecl*)(WORD, int)>(0x00840E50)(Opcode, a2);
 }

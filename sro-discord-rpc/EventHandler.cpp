@@ -58,7 +58,7 @@ int EventHandler::OnPacketRecv(MsgStreamBuffer* MsgBuffer)
 	break;
 	case 0x34B4: // SERVER_GUILD_DATA_END
 	{
-		auto result = reinterpret_cast<int(__thiscall*)(EventHandler*, MsgStreamBuffer*)>(0x0084CAB0)(this, MsgBuffer);
+		auto result = reinterpret_cast<int(__thiscall*)(EventHandler*, MsgStreamBuffer*)>(0x0084BF00)(this, MsgBuffer);
 		// Guild data has been processed, update guild name
 		AppManager::UpdateGameState();
 		// return normally
@@ -69,7 +69,7 @@ int EventHandler::OnPacketRecv(MsgStreamBuffer* MsgBuffer)
 
 	// Reset packet index, because client will use the same buffer
 	MsgBuffer->TotalReadBytes = 0;
-	return reinterpret_cast<int(__thiscall*)(EventHandler*, MsgStreamBuffer*)>(0x0084CAB0)(this, MsgBuffer);
+	return reinterpret_cast<int(__thiscall*)(EventHandler*, MsgStreamBuffer*)>(0x0084BF00)(this, MsgBuffer);
 }
 
 // Called on login screen from server selection
@@ -80,7 +80,7 @@ int EventHandler::OnNetMsg(MsgStreamBuffer* MsgBuffer)
 	{
 		AppManager::UpdateGameState(GAME_STATE::SERVER_SELECTION);
 	}
-	return reinterpret_cast<int(__thiscall*)(EventHandler*, MsgStreamBuffer*)>(0x0086BFC0)(this, MsgBuffer);
+	return reinterpret_cast<int(__thiscall*)(EventHandler*, MsgStreamBuffer*)>(0x0086C1F0)(this, MsgBuffer);
 }
 
 // Called on every action from character selection
@@ -98,5 +98,5 @@ int EventHandler::OnCharacterSelection(MsgStreamBuffer* MsgBuffer)
 		// Reset packet index, because client will use the same buffer
 		MsgBuffer->TotalReadBytes = 0;
 	}
-	return reinterpret_cast<int(__thiscall*)(EventHandler*, MsgStreamBuffer*)>(0x0085FC60)(this, MsgBuffer);
+	return reinterpret_cast<int(__thiscall*)(EventHandler*, MsgStreamBuffer*)>(0x0085F8A0)(this, MsgBuffer);
 }

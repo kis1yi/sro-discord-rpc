@@ -32,7 +32,7 @@ public:
 	T Read()
 	{
 		T Data;
-		reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, T*, int)>(0x004F7220)(this, &Data, sizeof(T));
+		reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, T*, int)>(0x004AB1B0)(this, &Data, sizeof(T));
 		return Data;
 	}
 
@@ -40,27 +40,27 @@ public:
 	T Read(std::size_t size)
 	{
 		T Data;
-		reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, T*, int)>(0x004F7220)(this, &Data, size);
+		reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, T*, int)>(0x004AB1B0)(this, &Data, size);
 		return Data;
 	}
 
 	BYTE* ReadBytes(std::size_t size)
 	{
 		BYTE* Data = new BYTE[size + 1];
-		reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, BYTE*, int)>(0x004F7220)(this, Data, size);
+		reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, BYTE*, int)>(0x004AB1B0)(this, Data, size);
 		return Data;
 	}
 
 	template<typename T>
 	void Write(T Data)
 	{
-		reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, T*, int)>(0x00508FE0)(this, &Data, sizeof(Data));
+		reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, T*, int)>(0x004BD1E0)(this, &Data, sizeof(Data));
 	}
 
 	template<typename T>
 	void Write(T Data, std::size_t size)
 	{
-		reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, T*, int)>(0x00508FE0)(this, &Data, size);
+		reinterpret_cast<void(__thiscall*)(MsgStreamBuffer*, T*, int)>(0x004BD1E0)(this, &Data, size);
 	}
 
 	std::string ReadStringA();
